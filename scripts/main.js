@@ -2,6 +2,11 @@ var React = require('react');
 //need react dom to actually mount things onto the DOM
 var ReactDOM = require('react-dom');
 
+//React Router Stuff
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var Navigation =  ReactRouter.Navigation;
 
 /*
   App
@@ -74,17 +79,13 @@ var Inventory = React.createClass({
 
 /*
   StorePicker
-  this will let us make <StorePicker/>
 */
 
 var StorePicker = React.createClass({
-
   render: function(){
-
-    var name = 'Emorysssss'
     return(
       <form className="store-selector">
-        <h2>Please enter a store, {name}</h2>
+        <h2>Please enter a store</h2>
         <input type="text" ref="storeID" required/>
         <input type="submit"/>
       </form>
@@ -93,4 +94,17 @@ var StorePicker = React.createClass({
 
 });
 
-ReactDOM.render(<App/>, document.querySelector('#main'));
+
+/*
+  Routes
+*/
+var routes = (
+  <Router>
+    <Route path="/" component={StorePicker}/>
+    <Route path="/store:storeId" component={App}/>
+  </Router>
+
+)
+
+//we used to pass <App/> or a component here... now we are passing variable routes
+ReactDOM.render(routes, document.querySelector('#main'));
