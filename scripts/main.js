@@ -7,18 +7,17 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var Navigation =  ReactRouter.Navigation;
+var createBrowserHistory = require('history/lib/createBrowserHistory');
 
-/*
-  App
-*/
 
+/* App */
 var App = React.createClass({
 
   render: function(){
     return(
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Seafood Market" number="2222"/>
+          <Header tagline="Fresh Seafood Marketzz" number="2222"/>
         </div>
         <Order/>
         <Inventory/>
@@ -27,9 +26,8 @@ var App = React.createClass({
   }
 });
 
-/*
-  Header
-*/
+
+/* Header */
 var Header = React.createClass({
   render: function(){
 
@@ -95,13 +93,12 @@ var StorePicker = React.createClass({
 });
 
 
-/*
-  Routes
-*/
+/* Routes */
 var routes = (
-  <Router>
+
+  <Router history={createBrowserHistory()}>
     <Route path="/" component={StorePicker}/>
-    <Route path="/store:storeId" component={App}/>
+    <Route path="/store/:storeId" component={App}/>
   </Router>
 
 )
